@@ -1,0 +1,36 @@
+Reflection
+
+a. The most challenging part for the AI was understanding the conflict resolution logic because different fields use different rules.
+
+b. Providing the complete class instead of a single method helped generate more accurate documentation.
+
+c. The AI was able to explain the overall purpose of the algorithm and the relationship between the different methods.
+
+d. In future projects, I would use this approach to quickly understand unfamiliar code and generate initial documentation.
+
+e. I would still review the generated documentation to ensure it accurately reflects the implementation.
+
+You can also use this format throughout the document:
+
+Documentation Generated Using Prompt 1
+
+a. The TaskMergeService synchronises tasks between local and remote sources.
+
+b. It identifies tasks that need to be created or updated.
+
+c. It resolves conflicts when the same task exists in both sources.
+
+d. It returns a MergeResult containing the merged tasks and required synchronisation actions.
+
+Insights from Prompt 2
+
+a. The algorithm gathers all task IDs from both sources.
+
+b. Tasks that exist in only one source are copied to the other source.
+
+c. Tasks that exist in both sources are processed through conflict resolution.
+
+d. Completed tasks are prioritised over incomplete tasks.
+
+e. Tags are merged to prevent information loss.
+

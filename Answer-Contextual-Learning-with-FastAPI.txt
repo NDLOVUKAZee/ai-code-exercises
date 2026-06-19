@@ -1,0 +1,176 @@
+EXERCISE: CONTEXTUAL LEARNING WITH FASTAPI
+
+PART 1: FRAMEWORK COMPARISON
+
+Personal Translation Table
+
+A. Routing
+
+Django:
+Uses URL patterns in urls.py and views.
+
+FastAPI:
+Uses decorators such as @app.get(), @app.post(), @app.put(), and @app.delete() directly above functions.
+
+B. Views
+
+Django:
+Uses function-based views or class-based views.
+
+FastAPI:
+Uses async or normal Python functions as endpoint handlers.
+
+C. Request Validation
+
+Django:
+Validation is typically handled through Forms, Serializers, or manual validation.
+
+FastAPI:
+Uses Pydantic models for automatic validation of request data.
+
+D. Authentication
+
+Django:
+Authentication is usually handled through Django Authentication or Django REST Framework authentication classes.
+
+FastAPI:
+Authentication is commonly implemented using OAuth2 and JWT tokens with dependency injection.
+
+E. URL Grouping
+
+Django:
+Uses apps and url modules.
+
+FastAPI:
+Uses APIRouter to organize endpoints into modules.
+
+F. Middleware
+
+Django:
+Uses middleware classes that process requests and responses.
+
+FastAPI:
+Supports middleware but also uses dependency injection for request-specific processing.
+
+G. API Documentation
+
+Django:
+Requires third-party tools such as drf-yasg or drf-spectacular.
+
+FastAPI:
+Automatically generates Swagger and ReDoc documentation.
+
+
+PART 2: UNDERSTANDING FASTAPI DESIGN CHOICES
+
+FastAPI was designed to make API development faster, safer, and easier to maintain.
+
+The framework uses Pydantic because it provides powerful data validation using Python type hints. This reduces boilerplate code and helps catch errors before requests reach business logic.
+
+Automatic API documentation solves a common problem found in many frameworks where documentation becomes outdated. FastAPI generates documentation directly from the code.
+
+Type hints are heavily used because they improve validation, code readability, IDE support, and documentation generation.
+
+FastAPI's async-first approach allows applications to handle many concurrent requests efficiently, making it well suited for modern web services.
+
+Design Philosophy Summary:
+
+a. Developer productivity.
+
+b. Strong validation by default.
+
+c. Automatic documentation.
+
+d. High performance through asynchronous programming.
+
+e. Clear and maintainable code structure.
+
+
+PART 3: APPLIED CONTEXTUAL LEARNING
+
+JWT Authentication in FastAPI
+
+Compared to Django REST Framework authentication, FastAPI relies heavily on dependency injection.
+
+Key components used:
+
+A. OAuth2PasswordBearer
+
+Used to extract authentication tokens from incoming requests.
+
+B. JWT Tokens
+
+Used to authenticate users without maintaining server-side sessions.
+
+C. Dependency Injection
+
+The Depends() function allows authentication checks to be reused across multiple endpoints.
+
+D. Pydantic Models
+
+Used to validate token and user data.
+
+Advantages of FastAPI Authentication:
+
+a. Authentication logic can be reused easily.
+
+b. Cleaner separation of concerns.
+
+c. Better type safety.
+
+d. Easier testing.
+
+e. Automatic documentation of security requirements.
+
+
+PART 4: MENTAL MODEL TRANSLATION
+
+Django Mental Model → FastAPI Mental Model
+
+Models → Pydantic Models / Database Models
+
+Views → Route Functions
+
+URLs → Route Decorators
+
+Middleware → Middleware + Dependencies
+
+Serializers → Pydantic Models
+
+Authentication Classes → OAuth2 + JWT Dependencies
+
+APIView/ViewSet → APIRouter Endpoints
+
+Swagger Plugins → Built-in Swagger Documentation
+
+Applications → Routers and Modules
+
+The biggest difference is that FastAPI focuses primarily on API development, while Django provides a complete web framework with many built-in features.
+
+
+REFLECTION QUESTIONS
+
+1. How does FastAPI's approach to authentication compare to frameworks you've used before?
+
+FastAPI uses dependency injection and JWT tokens extensively, while Django often relies on session-based authentication or DRF authentication classes.
+
+2. What advantages does FastAPI's dependency injection system provide for authentication?
+
+It promotes code reuse, cleaner architecture, and easier testing.
+
+3. How does type hinting in FastAPI make security implementation clearer?
+
+Type hints clearly define expected request and response data, reducing ambiguity and runtime errors.
+
+4. What patterns from other frameworks can you identify in the JWT implementation?
+
+Authentication middleware, request validation, user verification, and protected routes are concepts shared with Django and Django REST Framework.
+
+
+KEY LEARNINGS
+
+1. FastAPI uses Python type hints and Pydantic to provide automatic validation and documentation.
+
+2. Dependency injection is a core FastAPI feature that simplifies authentication and code organization.
+
+3. FastAPI offers better built-in API tooling and performance while Django provides a more complete full-stack development environment.

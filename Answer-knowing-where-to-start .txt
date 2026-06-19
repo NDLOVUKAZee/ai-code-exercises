@@ -1,0 +1,140 @@
+Exercise part 1
+
+Applying the Project Structure Prompt
+
+1. After exploring the project, I identified it as a repository containing software engineering exercises.
+
+2. I noticed that the project supports multiple programming languages, including Java, JavaScript, and Python.
+
+Misconceptions
+
+3. Initially, I thought the Task Manager was the main project.
+
+4. After further investigation, I realised that it is only one exercise within a larger collection of exercises.
+
+Entry Points and Architecture
+
+5. `README.md` appears to be the main entry point because it provides an overview of the project and links to the exercises.
+
+6. The `use-cases` folder contains the different exercise modules.
+
+7. The project follows a modular structure, with each exercise stored in its own folder.
+
+Key Components
+
+8. `README.md` – Provides project information and exercise instructions.
+
+9. `use-cases` – Contains all the exercise modules.
+
+10. `task-manager` – A sample application used for learning and practice.
+
+11. Java, JavaScript, and Python folders – Contain implementations in different programming languages.
+
+12. Overall, the project is organised to help developers practise skills such as debugging, testing, refactoring, and code comprehension.
+
+
+Exercise part 2
+Initial Search
+
+1. I searched for terms such as file, save, read, export**, and CSV.
+
+2. I found a file called FileManager.java.
+
+3. The file contains functionality for saving, reading, copying, deleting, and listing files, as well as creating ZIP archives.
+
+Hypothesis
+
+4. I think the Task Export to CSV feature should be implemented using the existing FileManager class.
+
+5. The `saveFile()` method could be reused to save task data as a CSV file.
+
+6. The Task Manager component would likely need to be modified to generate CSV-formatted task data before passing it to `FileManager`.
+
+Files Found
+
+7. `FileManager.java`
+
+Findings
+
+8. `FileManager.java` is responsible for file operations such as saving, reading, copying, deleting, and archiving files.
+
+9. This class appears to be the best location for handling the file-writing part of the export feature.
+
+10. The Task Manager component would need to interact with `FileManager` to export task information.
+
+Implementation Plan
+
+11. Retrieve task data from the Task Manager.
+
+12. Convert the task data into CSV format.
+
+13. Use the `saveFile()` method in `FileManager.java` to create the CSV file.
+
+14. Test the export feature to ensure the file is created correctly and contains the expected task data.
+
+This is much stronger than the previous answer because it's based on an actual file you found in the codebase.
+
+Exercise part 3
+1. The main entities are Task, TaskStatus, TaskPriority, TaskManager, and TaskStorage.
+
+2. A Task represents a piece of work that contains a title, description, priority, status, due date, and tags.
+
+3. TaskStatus represents the current state of a task.
+
+4. TaskPriority represents the importance level of a task.
+
+5. A task is considered overdue when its due date has passed and it is not marked as DONE.
+
+6. TaskManager handles task operations such as creating, updating, and deleting tasks.
+
+7. TaskStorage is responsible for storing and retrieving tasks.
+
+Questions:
+
+1. What status values are available besides TODO and DONE?
+
+2. What priority levels are available?
+
+Glossary:
+
+Task - A piece of work to be completed.
+
+Status - The current state of a task.
+
+Priority - The importance level of a task.
+
+Due Date - The deadline for completing a task.
+
+Tag - A label used to organise tasks.
+
+Overdue Task - A task that has passed its due date and is not completed.
+
+That's probably all you need unless your lecturer specifically asked for detailed answers.
+
+### Exercise part 4
+
+Planning
+
+1. I would modify Task.java because it contains the overdue logic and task status information.
+
+2. I would also check TaskManager.java because it handles task-related operations.
+
+3. I would add logic to check whether a task has been overdue for more than 7 days.
+
+4. If the task is overdue for more than 7 days and is not high priority, I would change its status to ABANDONED.
+
+Questions for the Team
+
+1. Does an ABANDONED status already exist, or do we need to create one?
+
+2. Should abandoned tasks be included in statistics and reports?
+
+3. When should the overdue check run?
+
+Reflection
+
+1. The prompts helped me identify where the task business logic is located and which files are responsible for task management.
+
+2. I am still unsure about all available task statuses and priority levels.
+
+3. My next step would be to review TaskStatus.java, TaskPriority.java, and TaskStorage.java to understand the system in more detail.

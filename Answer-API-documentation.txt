@@ -1,0 +1,122 @@
+API Documentation Exercise
+
+Selected API Endpoint
+
+GET /api/products
+
+Comprehensive Endpoint Documentation (Prompt 1)
+
+Description
+
+This endpoint retrieves a list of products. It supports filtering, sorting, and pagination to help users find products efficiently.
+
+Request Parameters
+
+a. category (String) - Filters products by category.
+
+b. minPrice (Number) - Returns products with a price greater than or equal to this value.
+
+c. maxPrice (Number) - Returns products with a price less than or equal to this value.
+
+d. sort (String) - Field used for sorting results. Default value is createdAt.
+
+e. order (String) - Sort order, either asc or desc. Default value is desc.
+
+f. page (Number) - Page number for pagination. Default value is 1.
+
+g. limit (Number) - Number of products returned per page. Default value is 20.
+
+h. inStock (Boolean) - When true, only products currently in stock are returned.
+
+Response Status Codes
+
+a. 200 OK - Products retrieved successfully.
+
+b. 500 Internal Server Error - Failed to retrieve products.
+
+Example Request 1
+
+GET /api/products?category=electronics
+
+Example Response
+
+{
+"products": [...],
+"pagination": {
+"total": 12,
+"page": 1,
+"limit": 20,
+"pages": 1
+}
+}
+
+Example Request 2
+
+GET /api/products?minPrice=20&maxPrice=100&sort=price&order=asc
+
+Example Response
+
+{
+"products": [...],
+"pagination": {
+"total": 18,
+"page": 1,
+"limit": 20,
+"pages": 1
+}
+}
+
+Authentication
+
+No authentication is required for this endpoint.
+
+Error Response
+
+{
+"error": "Server error",
+"message": "Failed to fetch products"
+}
+
+Converted Documentation Format (Prompt 2)
+
+OpenAPI Summary
+
+Path: /api/products
+
+Method: GET
+
+Parameters:
+a. category
+b. minPrice
+c. maxPrice
+d. sort
+e. order
+f. page
+g. limit
+h. inStock
+
+Responses:
+a. 200 - Successful product retrieval
+b. 500 - Server error
+
+Developer Usage Guide (Prompt 3)
+
+a. Send a GET request to /api/products.
+
+b. Add query parameters if filtering or sorting is required.
+
+c. Read the products array from the response body.
+
+d. Use the pagination object to navigate through pages of results.
+
+e. Handle 500 errors by displaying an appropriate error message or retrying the request.
+
+Reflection
+
+a. The most challenging part to document was the filtering and pagination behaviour because several query parameters interact with one another.
+
+b. Providing the endpoint code helped generate more accurate documentation.
+
+c. The Markdown-style documentation was the easiest format to understand.
+
+d. I would use this approach in future projects to quickly generate API documentation and then review it for accuracy before publishing.

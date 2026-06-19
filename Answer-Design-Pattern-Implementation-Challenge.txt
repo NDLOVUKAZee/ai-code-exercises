@@ -1,0 +1,67 @@
+Design Pattern Implementation Challenge – Observer Pattern (Java)
+
+Pattern Opportunity Analysis
+
+The WeatherStation class contains direct calls to updateCurrentConditionsDisplay(), updateStatisticsDisplay(), updateForecastDisplay(), and updateHeatIndexDisplay() whenever weather measurements change.
+
+This creates tight coupling because the WeatherStation class is responsible for both managing weather data and updating all displays. If a new display needs to be added, the WeatherStation class must be modified. This makes the code harder to maintain and violates the Open/Closed Principle.
+
+Chosen Design Pattern
+
+The Observer Pattern is the most suitable solution because multiple display objects need to be notified whenever the weather measurements change.
+
+How the Pattern Was Applied
+
+The WeatherStation class was changed into a Subject that manages a list of observers.
+
+An Observer interface was introduced so that all display classes follow a common update method.
+
+Each display became an Observer and receives updates whenever weather data changes.
+
+Instead of directly calling each display update method, the WeatherStation now notifies all registered observers automatically.
+
+Benefits of the Observer Pattern
+
+a) Reduces coupling between the WeatherStation and display classes.
+
+b) New displays can be added without modifying existing code.
+
+c) Improves maintainability and scalability.
+
+d) Follows the Open/Closed Principle because the system can be extended without changing existing classes.
+
+e) Separates weather data management from display presentation responsibilities.
+
+Testing
+
+The refactored solution was tested to ensure that all registered observers receive updated weather information whenever the measurements change.
+
+The tests confirmed that:
+
+a) Observers receive the correct temperature values.
+
+b) Observers receive the correct humidity values.
+
+c) Observers receive the correct pressure values.
+
+d) Multiple observers can be notified successfully.
+
+e) The behaviour remains consistent with the original implementation.
+
+Benefits Gained From Refactoring
+
+The Observer Pattern makes the application more flexible because display components are no longer hardcoded into the WeatherStation class.
+
+Future enhancements such as adding a MobileDisplay, WebDashboardDisplay, or EmailAlertDisplay can be implemented without changing the WeatherStation code.
+
+This reduces maintenance effort and improves code reusability.
+
+Reflection
+
+Implementing the Observer Pattern improved the maintainability of the code by separating responsibilities and reducing dependencies between classes.
+
+Future changes will be easier because new display types can be added without modifying existing functionality.
+
+The main challenge was understanding how observers register with the subject and receive updates automatically.
+
+This exercise demonstrated how design patterns can improve flexibility, maintainability, and scalability while preserving the original behaviour of the application.

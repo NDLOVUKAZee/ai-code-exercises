@@ -1,0 +1,109 @@
+Exercise: Getting Started with FastAPI
+
+Part 1: Understanding FastAPI Fundamentals
+
+FastAPI is a modern Python web framework used to build APIs quickly and efficiently. It is designed around Python type hints and automatically generates API documentation.
+
+Comparison with Flask:
+a. Flask is lightweight and requires additional libraries for validation and documentation.
+b. FastAPI provides validation and documentation out of the box.
+
+Comparison with Django:
+a. Django is a full-stack framework with built-in ORM, authentication, and admin features.
+b. FastAPI focuses specifically on API development and offers better performance for API services.
+
+Key advantages of FastAPI:
+a. Automatic API documentation.
+b. Built-in request validation using Pydantic.
+c. High performance.
+d. Easy to learn and use.
+e. Strong support for asynchronous programming.
+
+Key concepts learned:
+a. FastAPI Application
+b. Routes
+c. Path Parameters
+d. Query Parameters
+e. Pydantic Models
+f. Request Validation
+g. Dependency Injection
+h. Automatic Documentation
+
+Part 2: Creating My First API
+
+I created a simple FastAPI application with the following endpoints:
+
+a. GET /
+Returns a welcome message.
+
+b. GET /items/{item_id}
+Returns information about a specific item.
+
+c. GET /search/
+Demonstrates the use of query parameters.
+
+To run the application:
+
+Install dependencies:
+
+pip install fastapi uvicorn
+
+Start the server:
+
+uvicorn main:app --reload
+
+Open the browser:
+
+http://127.0.0.1:8000/docs
+
+The automatic Swagger documentation made it easy to test endpoints without using external tools.
+
+Part 3: Enhancing the API
+
+Additional FastAPI concepts learned:
+
+a. Pydantic Models
+Used for request and response validation.
+
+b. Custom Exception Handling
+Used to return meaningful error messages.
+
+c. APIRouter
+Helps organize routes into separate files.
+
+d. Response Models
+Ensures consistent API responses.
+
+e. Query Validation
+Prevents invalid input from reaching the application.
+
+Benefits of structuring the application into multiple files:
+
+a. Better maintainability.
+b. Easier debugging.
+c. Improved scalability.
+d. Clear separation of concerns.
+
+Part 4: To-Do API Challenge
+
+Features implemented:
+
+a. Create a to-do item.
+b. List all to-do items.
+c. Filter by completed or pending status.
+d. Mark a to-do item as completed.
+e. Delete a to-do item.
+
+Validation implemented:
+
+a. Required title field.
+b. Due date validation.
+c. Error handling for missing items.
+
+API documentation was automatically generated through FastAPI's Swagger UI.
+
+Key Learnings
+
+FastAPI provides automatic request validation through Pydantic, reducing the amount of manual validation code required.
+FastAPI automatically generates interactive API documentation, making testing and development much faster.
+Organizing routes, models, and exception handlers into separate modules improves maintainability and follows industry best practices.

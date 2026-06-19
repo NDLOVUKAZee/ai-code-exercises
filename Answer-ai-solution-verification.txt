@@ -1,0 +1,118 @@
+AI Solution Verification Challenge – Buggy Sorting Function
+
+A. Problem Description
+
+The provided merge sort algorithm contains a bug in the merge() function. The issue occurs when remaining elements from the left array are added to the result array.
+
+The bug prevents the sorting algorithm from completing correctly and may cause an infinite loop.
+
+B. AI Suggested Solution
+
+Original Buggy Code:
+
+while (i < left.length) {
+    result.push(left[i]);
+    j++; // Incorrect variable incremented
+}
+
+Corrected Code:
+
+while (i < left.length) {
+    result.push(left[i]);
+    i++;
+}
+
+The variable i should be incremented because elements are being read from the left array.
+
+C. Collaborative Solution Verification
+
+I reviewed the AI-generated solution and compared it with the logic of the merge sort algorithm.
+
+The loop processes remaining elements from the left array after the main comparison loop finishes. Since left[i] is being added to the result array, i must be incremented. Incrementing j causes the loop condition to never change, which can create an infinite loop.
+
+The AI solution correctly identified the bug.
+
+D. Learning Through Alternative Approaches
+
+I compared the solution with another implementation of merge sort.
+
+Alternative implementation:
+
+while (i < left.length) {
+    result.push(left[i++]);
+}
+
+This version produces the same result while using a shorter syntax.
+
+Comparing multiple implementations confirmed that the correct variable to increment is i.
+
+E. Developing a Critical Eye
+
+Instead of immediately accepting the AI response, I traced the code manually.
+
+Example:
+
+Input: [3, 1]
+
+After splitting:
+Left = [3]
+Right = [1]
+
+After merging:
+Result = [1]
+
+The remaining element from Left must still be added.
+
+If j is incremented instead of i:
+
+while (i < left.length)
+
+remains true forever because i never changes.
+
+This confirms the root cause of the bug.
+
+F. Final Verified Solution
+
+function merge(left, right) {
+    let result = [];
+    let i = 0;
+    let j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            result.push(left[i]);
+            i++;
+        } else {
+            result.push(right[j]);
+            j++;
+        }
+    }
+
+    while (i < left.length) {
+        result.push(left[i]);
+        i++;
+    }
+
+    while (j < right.length) {
+        result.push(right[j]);
+        j++;
+    }
+
+    return result;
+}
+
+G. Learning Points
+
+1. Always verify AI-generated solutions before using them.
+
+2. Trace algorithms using small test cases to understand how they work.
+
+3. Pay close attention to loop variables and termination conditions.
+
+4. Comparing multiple implementations helps confirm correctness.
+
+5. Understanding the algorithm is more valuable than simply applying a fix.
+
+H. Reflection
+
+My confidence in the solution increased after manually tracing the algorithm and comparing alternative implementations. The most important verification step was checking how the loop variables changed during execution. This exercise showed that AI can identify bugs quickly, but developers should still verify solutions through testing and logical analysis.

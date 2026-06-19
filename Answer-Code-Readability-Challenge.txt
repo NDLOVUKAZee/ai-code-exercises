@@ -1,0 +1,62 @@
+Code Readability Challenge – Example 3: Complex Algorithm Without Comments (Java)
+
+Original Code Analysis
+
+The method sorts an integer array in ascending order using the Selection Sort algorithm. Although the code works correctly, it lacks comments explaining how the algorithm works, why certain steps are performed, and what its performance characteristics are.
+
+Readability Improvements
+
+1. Added a method-level comment describing the purpose of the algorithm.
+2. Added explanatory comments throughout the code.
+3. Renamed variable min_idx to minIndex to follow Java naming conventions.
+4. Improved variable names to make the code easier to understand.
+5. Added time complexity information.
+
+Refactored Code
+
+/**
+
+* Sorts an array of integers in ascending order using the Selection Sort algorithm.
+*
+* Selection Sort works by repeatedly finding the smallest element in the
+* unsorted portion of the array and placing it at the beginning.
+*
+* Time Complexity:
+* * Best Case: O(n²)
+* * Average Case: O(n²)
+* * Worst Case: O(n²)
+*
+* Space Complexity:
+* * O(1) because sorting is done in place.
+    */
+    public static void sortItems(int[] array) {
+
+  int arrayLength = array.length;
+
+  // Move through each position in the array
+  for (int currentIndex = 0; currentIndex < arrayLength - 1; currentIndex++) {
+
+  ```
+   // Assume the current position contains the smallest value
+   int minIndex = currentIndex;
+
+   // Search the remaining unsorted portion for a smaller value
+   for (int searchIndex = currentIndex + 1; searchIndex < arrayLength; searchIndex++) {
+
+       if (array[searchIndex] < array[minIndex]) {
+           minIndex = searchIndex;
+       }
+   }
+
+   // Swap the smallest value found with the current position
+   int temp = array[minIndex];
+   array[minIndex] = array[currentIndex];
+   array[currentIndex] = temp;
+  ```
+
+  }
+  }
+
+Reflection
+
+The code is much easier to understand after adding comments and improving variable names. The original variables (i, j, min_idx) required the reader to mentally track their purpose. Renaming them to currentIndex, searchIndex, and minIndex immediately makes the algorithm clearer. Adding comments also helps explain the overall logic of Selection Sort and its performance characteristics. The most valuable improvement was documenting the algorithm's purpose and complexity, making future maintenance easier.

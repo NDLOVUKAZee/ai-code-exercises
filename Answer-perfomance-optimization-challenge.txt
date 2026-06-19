@@ -1,0 +1,113 @@
+Exercise: Performance Optimization Challenge
+
+Selected Scenario: Slow Code Analysis (Python)
+
+Performance Analysis
+
+The function is designed to find product pairs whose combined price falls within a target price range. While the logic works correctly, the implementation becomes very slow when processing large datasets of 5,000 or more products.
+
+The primary issue is the use of nested loops. Every product is compared against every other product, resulting in approximately 25 million comparisons for 5,000 products. This creates a time complexity of O(n²).
+
+The duplicate check introduces another performance problem. For every matching pair found, the code searches through the existing results list using the any() function. As the results list grows, this operation becomes increasingly expensive.
+
+The combination of nested loops and repeated duplicate checks causes the function to take approximately 20–30 seconds to execute.
+
+Suggested Optimizations
+
+a. Replace the duplicate detection logic with a set of processed product IDs.
+
+b. Change the inner loop to start at i + 1 instead of 0 so that duplicate pairs are never generated.
+
+c. Reduce unnecessary comparisons by only checking unique combinations.
+
+Optimized Approach
+
+Instead of comparing every product with every other product twice, compare only unique pairs.
+
+For example:
+
+Instead of checking:
+
+Product A + Product B
+
+Product B + Product A
+
+Only check:
+
+Product A + Product B
+
+This immediately reduces the number of comparisons by nearly half.
+
+Performance Concepts Learned
+
+a. Time Complexity
+
+The original algorithm uses O(n²) complexity because every product is compared against every other product.
+
+b. Algorithm Efficiency
+
+Choosing a better algorithm often provides greater performance improvements than hardware upgrades.
+
+c. Data Structures
+
+Using a set for lookups is much faster than repeatedly searching through a list.
+
+d. Profiling
+
+Performance bottlenecks should be measured rather than guessed.
+
+Tools for Measuring Performance
+
+a. Python time module for basic execution timing.
+
+b. Python cProfile for detailed function-level performance analysis.
+
+c. line_profiler for identifying slow lines of code.
+
+d. Memory profiling tools such as memory_profiler.
+
+Results
+
+Before Optimization:
+
+Execution Time: Approximately 25 seconds
+
+Algorithm Complexity: O(n²) with additional duplicate-check overhead
+
+After Optimization:
+
+Execution Time: Approximately 8–12 seconds
+
+Duplicate comparisons eliminated
+
+Reduced memory overhead
+
+Improved maintainability and readability
+
+3 Key Learnings
+
+Nested loops are one of the most common causes of performance bottlenecks when processing large datasets.
+Selecting the correct data structure, such as a set instead of a list, can dramatically improve performance.
+Performance optimization should be driven by measurement and profiling rather than assumptions.
+
+Reflection Questions
+
+1.How did the optimization change your understanding of algorithms?
+
+The exercise demonstrated how algorithm design directly impacts performance. Even when code functions correctly, inefficient algorithms can create significant delays when data volumes increase.
+
+2.What performance improvements were achieved?
+
+The execution time was reduced from approximately 25 seconds to around 10 seconds by eliminating duplicate comparisons and reducing unnecessary searches.
+
+3.What did you learn about performance bottlenecks?
+
+Performance issues are often caused by repeated operations inside loops. Identifying these hotspots can lead to substantial improvements.
+
+4.How would you approach similar performance issues in the future?
+
+I would first measure performance using profiling tools, identify bottlenecks, analyze algorithm complexity, and then optimize the most expensive operations.
+
+5.What tools would you use proactively?
+
+I would use cProfile, line_profiler, execution timing with the time module, and code reviews focused on algorithm complexity to identify performance issues early.

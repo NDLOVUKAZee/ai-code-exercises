@@ -1,0 +1,61 @@
+Function Decomposition Challenge (Java)
+
+1. Distinct Responsibilities Identified
+
+a. Load existing customer data for deduplication.
+
+b. Preprocess records based on the data source.
+
+c. Validate customer information.
+
+d. Check for duplicate records.
+
+e. Process address and date fields.
+
+f. Save valid records to the database.
+
+g. Generate processing reports and statistics.
+
+2. Decomposition Plan
+
+a. loadExistingCustomers()
+
+b. preprocessRecord()
+
+c. validateCustomerRecord()
+
+d. checkDuplicates()
+
+e. processAddress()
+
+f. processDateOfBirth()
+
+g. saveValidRecords()
+
+h. generateProcessingReport()
+
+3. Benefits of Refactoring
+
+a. Improves readability by reducing the size of the main function.
+
+b. Makes the code easier to maintain.
+
+c. Simplifies testing of individual functions.
+
+d. Reduces code duplication.
+
+e. Makes debugging easier.
+
+Reflection Questions
+
+1. How did breaking down the function improve its readability and maintainability?
+
+Breaking the function into smaller methods made it easier to understand because each method has a single responsibility.
+
+2. What was the most challenging part of decomposing the function?
+
+Identifying where validation, preprocessing, and deduplication logic should be separated without changing the program's behavior.
+
+3. Which extracted function would be most reusable in other contexts?
+
+The validateCustomerRecord() function because customer validation can be reused in multiple parts of the application.

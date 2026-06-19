@@ -1,0 +1,159 @@
+Exercise part 1
+
+Files Related to Task Creation and Status Updates
+
+1. TaskManager.java
+2. Task.java
+3. TaskStatus.java
+4. TaskStorage.java
+
+Main Components Involved
+
+1. TaskManager handles task creation and updates.
+2. Task stores task information.
+3. TaskStatus manages task states.
+4. TaskStorage saves and retrieves tasks.
+
+Execution Flow
+
+1. A user creates a task through TaskManager.
+2. TaskManager creates a new Task object.
+3. The task is assigned a unique ID and a default status of TODO.
+4. The task is saved using TaskStorage.
+5. When a status update is requested, TaskManager retrieves the task.
+6. The task status is updated and saved back to storage.
+7. If the status is changed to DONE, the completion date is recorded.
+
+How Data is Stored and Retrieved
+
+1. Task data is stored through TaskStorage.
+2. TaskManager retrieves tasks from TaskStorage when needed.
+3. Updates are saved back through TaskStorage.
+
+Interesting Design Patterns
+
+1. Separation of responsibilities is used.
+2. TaskManager handles business logic.
+3. Task stores task data.
+4. TaskStorage handles data persistence.
+
+Exercise part 2
+
+Assuming you've looked at `TaskPriority` and the priority-related code, you can keep the journal entry simple:
+
+Exercise Part 2: Deepen Understanding Through Guided Questions
+
+Initial Understanding
+
+1. I initially understood that task priorities are used to indicate the importance of a task.
+
+2. I believed that each task could only have one priority level.
+
+What I Discovered
+
+3. Each task has a TaskPriority value associated with it.
+
+4. The priority is assigned when the task is created and can be updated later.
+
+5. The system can filter and organise tasks based on their priority level.
+
+Key Insights
+
+6. Task priorities are managed separately from task statuses.
+
+7. TaskManager is responsible for updating task priorities.
+
+8. Priority information is used when generating task statistics and filtering tasks.
+
+Misconceptions Clarified
+
+9. At first, I thought priority might automatically affect task status.
+
+10. After examining the code, I found that priority and status are separate concepts.
+
+11. I also learned that priority can be changed without affecting the task's current status.
+
+
+Exercise part 3
+Exercise Part 3: Mapping Data Flow
+
+Entry Points and Components Involved
+
+1. The process starts in TaskManager when a request is made to mark a task as complete.
+
+2. TaskManager retrieves the task from TaskStorage using the task ID.
+
+3. The Task object is updated by changing its status to DONE.
+
+4. The markAsDone() method in the Task class records the completion date and updates the last modified date.
+
+5. TaskStorage saves the updated task information.
+
+State Changes During Task Completion
+
+1. The task is retrieved from storage.
+
+2. The task status changes from TODO to DONE.
+
+3. The completedAt field is set to the current date and time.
+
+4. The updatedAt field is updated to reflect the change.
+
+5. The updated task is saved back to storage.
+
+Potential Points of Failure
+
+1. The task ID may not exist in storage.
+
+2. The task may not be retrieved successfully.
+
+3. An invalid status value may be provided.
+
+4. The save operation may fail.
+
+5. The task data may become inconsistent if the update is not completed correctly.
+
+How the Application Persists Changes
+
+1. TaskManager updates the task information.
+
+2. The updated task is passed to TaskStorage.
+
+3. TaskStorage saves the updated task data.
+
+4. The changes remain stored and can be retrieved later when the task is accessed again.
+
+Exercise part 4
+
+For a 3–5 minute presentation, keep it simple:
+
+Exercise Part 4: Reflection and Presentation
+
+1. High-Level Overview of the Application Architecture
+
+The Task Manager application is built around several main components. TaskManager handles the business logic, Task stores task information, TaskStorage manages storing and retrieving tasks, and TaskStatus and TaskPriority define task states and priority levels. These components work together to create, update, and manage tasks.
+
+2. How Task Creation Works
+
+When a user creates a task, TaskManager creates a new Task object. The task is given a unique ID, a default status of TODO, and any provided details such as description, priority, due date, and tags. The task is then saved using TaskStorage.
+
+3. How Task Prioritization Works
+
+Each task has a TaskPriority value. The priority is assigned when the task is created and can be updated later. The system can use priority information to filter tasks and generate statistics.
+
+4. How Task Completion Works
+
+When a task is marked as complete, TaskManager retrieves the task from storage and updates its status to DONE. The completion date and last updated date are recorded, and the updated task is saved back to storage.
+
+5. Interesting Design Pattern or Approach
+
+One interesting approach is the separation of responsibilities. Task stores task data, TaskManager handles business logic, and TaskStorage manages data persistence. This makes the code easier to understand and maintain.
+
+6. Most Challenging Part
+
+The most challenging part was understanding how the different classes worked together. At first, it was difficult to see where tasks were created, updated, and stored. Examining the code and following the flow between classes helped me understand the relationships between the components.
+
+7. How the Prompts Helped
+
+The prompts helped me break the codebase into smaller parts. They guided me to focus on the project structure, feature implementation, domain model, and data flow. This made it easier to understand the application step by step instead of trying to understand everything at once.
+

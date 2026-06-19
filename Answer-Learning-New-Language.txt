@@ -1,0 +1,211 @@
+Exercise: Learning a New Programming Language with AI
+
+Part 1: Learning Journey Plan
+
+Source Language: Python
+
+Target Language: Java
+
+Learning Goals
+
+1. Learn Java object-oriented programming concepts.
+
+2. Build REST APIs using Spring Boot.
+
+3. Understand Java collections, streams, and exception handling.
+
+Learning Plan
+
+Phase 1: Java Fundamentals
+
+Prerequisites:
+Basic programming knowledge and Python experience.
+
+Learning Steps:
+
+a) Learn Java syntax and structure.
+
+b) Understand variables, data types, and operators.
+
+c) Learn methods and classes.
+
+d) Practice loops and conditional statements.
+
+e) Understand object-oriented programming basics.
+
+Verification Activities:
+
+a) Create a simple Java console application.
+
+b) Implement a basic calculator.
+
+Phase 2: Intermediate Java
+
+Prerequisites:
+Understanding of Java fundamentals.
+
+Learning Steps:
+
+a) Learn inheritance and polymorphism.
+
+b) Understand interfaces and abstract classes.
+
+c) Learn exception handling.
+
+d) Explore Java Collections Framework.
+
+e) Practice file handling.
+
+Verification Activities:
+
+a) Build a student management system.
+
+b) Create custom exceptions.
+
+Phase 3: Advanced Java
+
+Prerequisites:
+Comfortable with Java OOP concepts.
+
+Learning Steps:
+
+a) Learn Java Streams.
+
+b) Understand Lambda Expressions.
+
+c) Learn Generics.
+
+d) Explore Multithreading.
+
+e) Practice design patterns.
+
+Verification Activities:
+
+a) Refactor old code using streams.
+
+b) Create a multithreaded application.
+
+Phase 4: Spring Boot Development
+
+Prerequisites:
+Good understanding of Java.
+
+Learning Steps:
+
+a) Learn Spring Boot fundamentals.
+
+b) Build REST APIs.
+
+c) Connect to databases using JPA.
+
+d) Implement authentication.
+
+e) Deploy an application.
+
+Verification Activities:
+
+a) Build a Todo API.
+
+b) Deploy the application locally.
+
+Part 2: Four-Step Prompting Strategy
+
+Topic Chosen: Java Streams
+
+Step 1: Conceptual Understanding
+
+Key Learnings:
+
+1. Java Streams process collections declaratively.
+
+2. Streams reduce boilerplate code compared to loops.
+
+3. Streams focus on data transformations rather than iteration.
+
+Step 2: Step-by-Step Breakdown
+
+Key Learnings:
+
+1. Streams use filter(), map(), and collect() operations.
+
+2. Streams can be chained together.
+
+3. Streams improve readability when processing collections.
+
+Step 3: Guided Implementation
+
+Example:
+
+```java
+List<String> names = Arrays.asList("John", "Sarah", "Mike");
+
+List<String> filteredNames = names.stream()
+        .filter(name -> name.startsWith("M"))
+        .collect(Collectors.toList());
+```
+
+Step 4: Understanding Verification
+
+Key Learnings:
+
+1. Stream operations should remain simple.
+
+2. Complex business logic should be extracted into methods.
+
+3. Readability is more important than using streams everywhere.
+
+Part 3: Advanced Prompting Techniques
+
+Technique 1: Using Context Effectively
+
+Key Learnings:
+
+1. Python list comprehensions are conceptually similar to Java Streams.
+
+2. Java Streams provide stronger typing.
+
+3. Stream pipelines encourage functional programming concepts.
+
+Technique 2: Promoting Deep Understanding
+
+Key Learnings:
+
+1. Streams can improve readability but are not always faster.
+
+2. Parallel Streams can improve performance for large datasets.
+
+3. Understanding performance trade-offs is important.
+
+Part 4: Mini Project
+
+Project: Java Task Manager
+
+Components:
+
+a) Task class
+
+b) TaskService class
+
+c) Main application class
+
+d) Task list management
+
+Potential Challenges:
+
+a) Adjusting from Python's dynamic typing to Java's static typing.
+
+b) Writing more structured code.
+
+c) Understanding Java package organization.
+
+Reflection
+
+1. The most effective strategy was using contextual comparisons between Python and Java.
+
+2. Java's strong typing and object-oriented approach were different from Python's flexibility.
+
+3. My Python habits initially made me write less structured Java code.
+
+4. Next time I would spend more time practicing Java Streams and Spring Boot.
+
+5. I still need to improve my understanding of multithreading and advanced Spring Boot concepts.

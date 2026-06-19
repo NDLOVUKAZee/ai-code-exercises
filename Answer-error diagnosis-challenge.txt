@@ -1,0 +1,99 @@
+Error Analysis: Null Pointer Exception (Java)
+
+Error Description
+
+The error occurs when the program tries to call a method on an object that does not exist. In this case, the application attempts to call getPrice() on a Product object that is null.
+
+Error Message
+
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "com.example.store.Product.getPrice()" because "product" is null
+
+This means the variable product does not reference a valid Product object when getPrice() is called.
+
+Root Cause
+
+The problem starts in Main.java where a null value is added to the shopping cart.
+
+cart.addItem(null);
+
+The calculateTotal() method loops through all items in the cart.
+
+for (Product product : items) {
+total += product.getPrice();
+}
+
+When the loop reaches the null item, Java attempts to execute:
+
+product.getPrice()
+
+Because product is null, the application throws a NullPointerException.
+
+Execution Flow
+
+1. Main creates a ShoppingCart.
+
+2. Several Product objects are added.
+
+3. A null value is added to the cart.
+
+4. checkout() is called.
+
+5. checkout() calls calculateTotal().
+
+6. calculateTotal() loops through the items.
+
+7. The loop reaches the null item.
+
+8. getPrice() is called on null.
+
+9. A NullPointerException is thrown.
+
+Suggested Solution
+
+Option A: Prevent null values from being added.
+
+public void addItem(Product product) {
+if(product != null) {
+items.add(product);
+}
+}
+
+Option B: Check for null before using the object.
+
+for(Product product : items) {
+if(product != null) {
+total += product.getPrice();
+}
+}
+
+Option A is generally better because invalid data is stopped before entering the system.
+
+Learning Points
+
+A. A NullPointerException occurs when code tries to use an object reference that points to null.
+
+B. Input validation should be performed before storing data.
+
+C. Error messages should be read from the bottom of the stack trace upward to locate the exact line causing the problem.
+
+D. Defensive programming techniques such as null checks help prevent runtime errors.
+
+E. Data should be validated as early as possible.
+
+Reflection Questions
+
+1. How did the AI explanation compare to documentation found online?
+
+The AI explanation was easier to understand because it traced the error through the program flow and connected the stack trace to the actual code.
+
+2. What aspects of the error would have been difficult to diagnose manually?
+
+Finding the original source of the null value could be difficult in a larger application with many classes and methods.
+
+3. How would you modify your code to provide better error messages in the future?
+
+I would add validation checks and custom error messages before adding objects to collections.
+
+4. Did the AI help you understand not just the fix, but the underlying concepts?
+
+Yes. The explanation showed how object references work in Java and why NullPointerExceptions occur.

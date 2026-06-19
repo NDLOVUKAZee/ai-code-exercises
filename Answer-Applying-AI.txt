@@ -1,0 +1,93 @@
+Activity 1 – Idiomatic Code Transformation
+
+File Used: views.py
+
+Code Reviewed:
+
+```python
+class TodosAPIView(ListCreateAPIView):
+    serializer_class = TodoSerializer
+    pagination_class = CustomPageNumberPagination
+    permission_classes = (IsAuthenticated,)
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+
+    filterset_fields = ['id', 'title', 'desc', 'is_complete']
+    search_fields = ['id', 'title', 'desc', 'is_complete']
+    ordering_fields = ['id', 'title', 'desc', 'is_complete']
+
+    def perform_create(self, serializer):
+        return serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        return Todo.objects.filter(owner=self.request.user)
+```
+
+3 Key Learnings
+
+1. Django REST Framework generic views reduce boilerplate code and make APIs easier to maintain.
+
+2. Keeping query filtering inside `get_queryset()` ensures users only access their own data.
+
+3. Using built-in filtering, searching, and ordering features is more idiomatic than writing custom query logic.
+
+Activity 2 – Code Quality Detective
+
+File Reviewed: views.py
+
+Code Quality Rating
+
+Readability: 8/10
+
+Performance: 8/10
+
+Maintainability: 9/10
+
+Checklist Created
+
+a) Remove unused imports.
+
+b) Keep permissions consistent across all views.
+
+c) Avoid commented-out code that is no longer needed.
+
+d) Use descriptive comments where business logic is complex.
+
+e) Ensure querysets are filtered by the authenticated user.
+
+3 Key Learnings
+
+1. Unused imports make code harder to read and should be removed.
+
+2. Generic views provide cleaner and more maintainable code than creating separate views for common CRUD operations.
+
+3. Security should always be considered by restricting querysets to the current user.
+
+Activity 3 – Understanding Django REST Framework Generic Views
+
+Feature Studied: Generic Views
+
+3 Key Learnings
+
+1. Generic views provide built-in CRUD functionality with minimal code.
+
+2. Methods such as `get_queryset()` and `perform_create()` allow customization without rewriting the entire view.
+
+3. Generic views encourage reusable and maintainable API design.
+
+Practice Example
+
+```python
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.permissions import IsAuthenticated
+
+class NoteAPIView(ListCreateAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return Note.objects.filter(owner=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+```
+

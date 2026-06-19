@@ -1,0 +1,59 @@
+Algorithm Selected
+
+Task List Merging (Two-Way Synchronisation)
+
+Understanding the Algorithm
+
+The purpose of this algorithm is to merge tasks from two different sources, such as a local task list and a remote task list. It ensures that both sources contain the most up-to-date task information while resolving any conflicts that may occur.
+
+How the Algorithm Works
+
+1. The algorithm collects all task IDs from both the local and remote task lists.
+
+2. It checks each task ID to determine whether the task exists locally, remotely, or in both locations.
+
+3. If a task exists only locally, it is marked for creation in the remote source.
+
+4. If a task exists only remotely, it is marked for creation in the local source.
+
+5. If a task exists in both sources, the algorithm compares them and resolves conflicts.
+
+6. The most recently updated version of a task is generally selected.
+
+7. If one version of the task is marked as DONE and the other is not, the completed version takes priority.
+
+8. Tags from both versions are combined so that no tag information is lost.
+
+9. The merged task list is returned together with information about which tasks need to be created or updated in each source.
+
+Insights and Learning Points
+
+1. The algorithm handles data synchronisation between two task stores.
+
+2. It uses conflict resolution rules to prevent data loss.
+
+3. Completion status is treated differently from other fields because completed tasks are given priority.
+
+4. Tags are merged instead of replaced to preserve information from both sources.
+
+Reflection Questions
+
+1.How did the AI's explanation change your understanding of the algorithm?
+
+The explanation helped me understand that the algorithm does more than simply combine task lists. It also resolves conflicts and determines which version of a task should be kept.
+
+2.What aspects were still difficult to understand after the AI explanation?
+
+The conflict resolution process was initially difficult to understand because different fields are handled using different rules.
+
+3.How would you explain this algorithm to another junior developer?
+
+I would explain that the algorithm compares tasks from two sources, identifies differences, resolves conflicts, and produces a single merged version while ensuring both sources are updated correctly.
+
+4.Did you test this understanding against AI?
+
+Yes. I compared my interpretation of the code with the AI explanation and verified the flow of the merge process.
+
+5.How might you improve the algorithm based on your understanding?
+
+I would consider adding more advanced conflict resolution rules and logging so that users can see why a particular version of a task was selected during the merge process.

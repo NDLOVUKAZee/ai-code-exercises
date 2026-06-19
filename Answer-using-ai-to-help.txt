@@ -1,0 +1,239 @@
+Part 1: Test Plan Document
+
+Functions Under Test:
+
+* calculateTaskScore(Task task)
+* sortTasksByImportance(List<Task> tasks)
+* getTopPriorityTasks(List<Task> tasks, int limit)
+
+Priority 1 Tests
+
+Test: Verify priority weights are applied correctly.
+
+Expected Outcome:
+
+* LOW = 10 points
+* MEDIUM = 20 points
+* HIGH = 30 points
+* URGENT = 40 points
+
+Test: Verify overdue tasks receive an additional 30 points.
+
+Expected Outcome:
+An overdue task receives a score boost of 30.
+
+Priority 2 Tests
+
+Test: Verify tasks due today receive an additional 20 points.
+
+Expected Outcome:
+Score increases by 20.
+
+Test: Verify tasks due within 2 days receive an additional 15 points.
+
+Expected Outcome:
+Score increases by 15.
+
+Test: Verify tasks due within 7 days receive an additional 10 points.
+
+Expected Outcome:
+Score increases by 10.
+
+Priority 3 Tests
+
+Test: Verify DONE tasks receive a 50-point reduction.
+
+Expected Outcome:
+Score decreases by 50.
+
+Test: Verify REVIEW tasks receive a 15-point reduction.
+
+Expected Outcome:
+Score decreases by 15.
+
+Priority 4 Tests
+
+Test: Verify tasks tagged "blocker", "critical", or "urgent" receive an 8-point boost.
+
+Expected Outcome:
+Score increases by 8.
+
+Test: Verify recently updated tasks receive a 5-point boost.
+
+Expected Outcome:
+Score increases by 5.
+
+Priority 5 Tests
+
+Test: Verify sortTasksByImportance returns tasks ordered by highest score first.
+
+Expected Outcome:
+Tasks are sorted in descending score order.
+
+Test: Verify getTopPriorityTasks returns only the requested number of tasks.
+
+Expected Outcome:
+Returned list size equals the specified limit.
+
+Test Types
+
+Unit Tests:
+
+* calculateTaskScore
+* sortTasksByImportance
+* getTopPriorityTasks
+
+Integration Tests:
+
+* Complete workflow using all three methods together
+
+Part 2: Improved Unit Tests
+
+Test 1: Priority Weight Calculation
+
+```java
+@Test
+public void shouldGiveHigherScoreToUrgentTaskThanLowPriorityTask() {
+
+    Task lowTask = new Task();
+    lowTask.setPriority(TaskPriority.LOW);
+
+    Task urgentTask = new Task();
+    urgentTask.setPriority(TaskPriority.URGENT);
+
+    int lowScore = TaskPriorityManager.calculateTaskScore(lowTask);
+    int urgentScore = TaskPriorityManager.calculateTaskScore(urgentTask);
+
+    assertTrue(urgentScore > lowScore);
+}
+```
+
+Test 2: Overdue Task Bonus
+
+```java
+@Test
+public void shouldAddThirtyPointsForOverdueTask() {
+
+    Task task = new Task();
+
+    task.setPriority(TaskPriority.MEDIUM);
+    task.setDueDate(LocalDateTime.now().minusDays(1));
+
+    int score = TaskPriorityManager.calculateTaskScore(task);
+
+    assertTrue(score >= 50);
+}
+```
+
+Test 3: Critical Tag Bonus
+
+```java
+@Test
+public void shouldAddBonusForCriticalTag() {
+
+    Task task = new Task();
+
+    task.setPriority(TaskPriority.MEDIUM);
+    task.setTags(List.of("critical"));
+
+    int score = TaskPriorityManager.calculateTaskScore(task);
+
+    assertTrue(score >= 28);
+}
+```
+
+Part 3: TDD Implementation
+
+New Feature
+
+Tasks assigned to the current user should receive a score boost of +12.
+
+Failing Test
+
+```java
+@Test
+public void shouldAddTwelvePointsForAssignedUserTask() {
+
+    Task task = new Task();
+
+    task.setAssignedToCurrentUser(true);
+
+    int score = TaskPriorityManager.calculateTaskScore(task);
+
+    assertTrue(score >= 12);
+}
+```
+
+Minimal Code Change
+
+```java
+if(task.isAssignedToCurrentUser()) {
+    score += 12;
+}
+```
+
+Bug Fix TDD
+
+Problem:
+Incorrect calculation of days since update.
+
+Failing Test
+
+```java
+@Test
+public void shouldCalculateDaysSinceUpdateCorrectly() {
+
+    Task task = new Task();
+
+    task.setUpdatedAt(LocalDateTime.now().minusDays(5));
+
+    int score = TaskPriorityManager.calculateTaskScore(task);
+
+    assertNotNull(score);
+}
+```
+
+Fix
+
+```java
+long daysSinceUpdate = ChronoUnit.DAYS.between(
+    task.getUpdatedAt(),
+    LocalDateTime.now()
+);
+```
+
+Part 4: Integration Test
+
+```java
+@Test
+public void shouldReturnHighestPriorityTasks() {
+
+    Task task1 = new Task();
+    task1.setPriority(TaskPriority.LOW);
+
+    Task task2 = new Task();
+    task2.setPriority(TaskPriority.URGENT);
+
+    Task task3 = new Task();
+    task3.setPriority(TaskPriority.HIGH);
+
+    List<Task> tasks = List.of(task1, task2, task3);
+
+    List<Task> topTasks =
+        TaskPriorityManager.getTopPriorityTasks(tasks, 2);
+
+    assertEquals(2, topTasks.size());
+
+    int firstScore =
+        TaskPriorityManager.calculateTaskScore(topTasks.get(0));
+
+    int secondScore =
+        TaskPriorityManager.calculateTaskScore(topTasks.get(1));
+
+    assertTrue(firstScore >= secondScore);
+}
+```
+
+Reflection
+
+Testing the TaskPriorityManager helped me understand how task scores are calculated using multiple factors such as priority, due dates, status, tags, and update dates. The most important tests focused on priority weighting, overdue tasks, and task status because these have the largest impact on the final score. I also learned that edge cases such as null due dates and recently updated tasks should be tested to ensure the application behaves correctly. The integration test demonstrated how calculateTaskScore, sortTasksByImportance, and getTopPriorityTasks work together to produce a prioritized list of tasks. Using AI helped identify additional scenarios and edge cases that could easily be overlooked during manual test planning.

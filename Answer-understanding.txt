@@ -1,0 +1,221 @@
+Exercise 1: Code Readability Improvement (Java)
+
+Prompt Used:
+Analyze the following Java code using standard Java naming conventions. Identify readability issues and suggest improvements to variable names, method names, class names, and code structure.
+
+1. Readability Issues Identified
+
+a. UserMgr is abbreviated and should be renamed to UserManager.
+
+b. U is too short and should be renamed to User.
+
+c. u_list should be renamed to users.
+
+d. db should be renamed to databaseConnection.
+
+e. un should be renamed to username.
+
+f. pw should be renamed to password.
+
+g. em should be renamed to email.
+
+h. Method a() should be renamed to addUser().
+
+i. Method f() should be renamed to findUserByUsername().
+
+2. Code Structure Improvements
+
+a. Validation logic could be moved into a separate method.
+
+b. Username checking could be moved into its own method.
+
+c. Smaller methods would make the code easier to read and maintain.
+
+3. Additional Issue Identified
+
+a. The SQL query uses string concatenation, which can lead to SQL injection.
+
+b. Prepared statements would be a safer approach.
+
+4. What I Learned
+
+a. Descriptive names make code easier to understand.
+
+b. Method names should clearly describe what they do.
+
+c. Breaking large methods into smaller methods improves readability.
+
+d. Following Java naming conventions makes code more maintainable.
+
+e. Readability reviews can also help identify security issues.
+
+
+Exercise 2: Function Refactoring (Python)
+
+Prompt Used:
+Analyze the following Python function. The function should process orders, update inventory, and track revenue. Identify how the function can be broken down into smaller, more focused functions.
+
+1. Functions That Could Be Created
+
+a. validate_order()
+
+- Check if the item exists in inventory.
+-Check if there is enough stock available.
+- Check if the customer exists.
+
+b. calculate_price()
+
+- Calculate the item price based on quantity.
+- Apply premium customer discounts.
+
+c. calculate_shipping()
+
+- Determine shipping costs based on customer location.
+- Apply domestic and international shipping rules.
+
+d. calculate_tax()
+
+- Calculate tax on the order price.
+
+e. update_inventory()
+
+- Reduce inventory quantity after a successful order.
+
+f. create_order_result()
+
+- Create the final result dictionary for the processed order.
+
+2. Benefits of Refactoring
+
+a. Each function would have a single responsibility.
+
+b. The code would be easier to read and understand.
+
+c. Individual functions could be tested separately.
+
+d. Future changes would be easier to implement.
+
+e. The main process_orders() function would become shorter and cleaner.
+
+3. Comparison With My Own Ideas
+
+a. I noticed that validation could be separated into its own function.
+
+b. The AI also identified price calculation, shipping calculation, and tax calculation as separate responsibilities.
+
+c. I did not initially consider creating a separate function for building the result dictionary.
+
+d. The AI's approach makes the code more modular and easier to maintain.
+
+4. What I Learned
+
+a. Large functions often perform multiple responsibilities.
+
+b. Breaking code into smaller functions improves readability.
+
+c. Functions should focus on one specific task.
+
+d. Refactoring makes testing and maintenance easier.
+
+e. AI can help identify logical sections of code that can be extracted into separate functions.
+
+
+Exercise 3: Code Duplication Detection (JavaScript)
+
+Prompt Used:
+Analyze the following JavaScript code for duplicated logic. Identify repeated patterns and suggest ways to consolidate them while keeping the code readable for a team of junior developers.
+
+1. Repeated Patterns Identified
+
+a. The code calculates averages for age, income, and score using nearly identical loops.
+
+b. The code finds the highest value for age, income, and score using nearly identical loops.
+
+c. The only difference between the repeated sections is the property being accessed (age, income, or score).
+
+2. Suggested Consolidation
+
+a. Create a calculateAverage() function that accepts the data array and property name.
+
+Example:
+
+- calculateAverage(userData, "age")
+- calculateAverage(userData, "income")
+- calculateAverage(userData, "score")
+
+b. Create a findHighestValue() function that accepts the data array and property name.
+
+Example:
+
+- findHighestValue(userData, "age")
+- findHighestValue(userData, "income")
+- findHighestValue(userData, "score")
+
+c. Reuse these functions instead of writing separate loops for each property.
+
+3. Benefits of Consolidation
+
+a. Reduces code duplication.
+
+b. Makes the code shorter and easier to maintain.
+
+c. Changes only need to be made in one place.
+
+d. Reduces the risk of bugs caused by inconsistent updates.
+
+e. Makes the purpose of the code clearer.
+
+4. Readability for Junior Developers
+
+a. Small helper functions such as calculateAverage() and findHighestValue() would be easy for junior developers to understand.
+
+b. The helper function names clearly describe their purpose.
+
+c. The code becomes easier to read because repeated loops are removed.
+
+d. Overly complex solutions should be avoided because they may make the code harder for junior developers to follow.
+
+5. What I Learned
+
+a. Duplicate code often indicates an opportunity for refactoring.
+
+b. Helper functions can eliminate repeated logic.
+
+c. Reducing duplication improves maintainability.
+
+d. Readability should be balanced with code reuse.
+
+e. The most readable solution is often one that uses simple, well-named helper functions.
+
+
+Reflection Questions
+
+1. Which prompting strategy did you find most useful? Why?
+
+I found Function Refactoring the most useful because it helped break large functions into smaller, easier-to-manage parts.
+
+2. What kinds of improvements did the AI suggest that you might not have thought of?
+
+The AI suggested creating helper functions and identified a potential SQL injection issue.
+
+3. Were there any suggestions the AI made that you disagreed with? Why?
+
+No major disagreements, although some suggestions may be unnecessary for small programs.
+
+4. How might you adapt these prompts for your specific codebase or tech stack?
+
+I would include the programming language, coding standards, and project requirements.
+
+5. What safeguards would you put in place before applying AI-suggested refactoring to production code?
+
+a. Review the changes.
+
+b. Run tests.
+
+c. Perform a code review.
+
+d. Test before deployment.
+
+Overall Reflection
+
+This exercise showed me how AI can help improve code readability, reduce duplication, and identify refactoring opportunities. However, all suggestions should be reviewed before implementation.
